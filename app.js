@@ -20,7 +20,7 @@ async function buildScores() {
                 const identifier = scoreObj.mid.toString()
                 const matchType = "inGameID";
                 const lamp = lamps[scoreObj.clear]
-                const difficulty = await formatDiffName(Object.keys(song.difficulty)[scoreObj.type])
+                const difficulty = await formatDiffName(Object.keys(song.difficulty)[scoreObj.type],song)
                 const timeAchieved = (new Date(scoreObj.updatedAt)).getTime()
                 parsedScores.push({ score, lamp, matchType, identifier,  difficulty, timeAchieved })
             }
@@ -38,7 +38,8 @@ async function write() {
     fs.writeFileSync('./export_kamaitachi.json', JSON.stringify(await build()))
 }
 
-async function formatDiffName(diff) {
+async function formatDiffName(diff, song) {
+    const infDiffs = ["MXM","INF","GRV","HVN","VVD"]
     switch (diff) {
         case "novice":
             return "NOV"
@@ -53,16 +54,7 @@ async function formatDiffName(diff) {
             return "MXM"
             break;
         case "infinite":
-            return "INF"
-            break;
-        case "gravity":
-            return "GRV"
-            break;
-        case "heavenly":
-            return "HVN"
-            break;
-        case "vivid":
-            return "VVD"
+            return infDiffs[song.info.inf_ver["#text"] - 1]
             break;
         }
 }
