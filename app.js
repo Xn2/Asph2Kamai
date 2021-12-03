@@ -42,14 +42,9 @@ async function formatDiffName(diff, song) {
     const infDiffs = ["MXM","INF","GRV","HVN","VVD"]
     switch (diff) {
         case "novice":
-            return "NOV"
-            break;
         case "advanced":
-            return "ADV"
-            break;
         case "exhaust":
-            return "EXH"
-            break;
+            return diff.slice(0, 3).toUpperCase()
         case "maximum":
             return "MXM"
             break;
