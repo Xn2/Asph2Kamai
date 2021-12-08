@@ -12,7 +12,7 @@ async function buildMeta() {
 
 async function buildScores() {
     const parsedScores = []
-    const lamps = ['NOT PLAYED', 'FAILED', 'CLEAR', 'EXCESSIVE CLEAR', 'ULTIMATE CHAIN', 'PERFECT ULTIMATE CHAIN']
+    const lamps = ['FAILED', 'FAILED', 'CLEAR', 'EXCESSIVE CLEAR', 'ULTIMATE CHAIN', 'PERFECT ULTIMATE CHAIN']
     for (scoreObj of scores) {
         for (song of db) {
             if (scoreObj.mid == song['@id'] && song.info.version["#text"] != "6") {
